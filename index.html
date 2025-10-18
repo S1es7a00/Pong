@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong - El Juego Clásico</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>PONG</h1>
+            <div class="score">
+                <span id="player1Score">0</span>
+                <span class="separator">-</span>
+                <span id="player2Score">0</span>
+            </div>
+            <div class="timer">
+                <span id="gameTimer">00:00</span>
+            </div>
+            <div class="speed-indicator">
+                <span id="speedIndicator">Velocidad: 1.0x</span>
+            </div>
+        </div>
+        
+        <!-- Pantalla de selección de modo -->
+        <div id="modeSelection" class="mode-selection">
+            <h2>Selecciona el Modo de Juego</h2>
+            <div class="mode-buttons">
+                <button id="playerVsPlayerBtn" class="mode-btn">
+                    <span class="mode-title">👥 Jugador vs Jugador</span>
+                    <span class="mode-desc">Juega contra un amigo</span>
+                </button>
+                <button id="playerVsCpuBtn" class="mode-btn">
+                    <span class="mode-title">🤖 Jugador vs CPU</span>
+                    <span class="mode-desc">Juega contra la computadora</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Formulario de nombres de jugadores -->
+        <div id="playerNamesForm" class="player-names-form" style="display: none;">
+            <h2>Ingresa los Nombres de los Jugadores</h2>
+            <div class="names-input-container">
+                <div class="player-input">
+                    <label for="player1Name">🎮 Jugador 1 (W/S):</label>
+                    <input type="text" id="player1Name" placeholder="Nombre del Jugador 1" maxlength="15">
+                </div>
+                <div class="player-input">
+                    <label for="player2Name">🎮 Jugador 2 (↑/↓):</label>
+                    <input type="text" id="player2Name" placeholder="Nombre del Jugador 2" maxlength="15">
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button id="startWithNamesBtn" class="form-btn primary">¡Comenzar Juego!</button>
+                <button id="backToModeBtn" class="form-btn secondary">Volver</button>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="400" style="display: none;"></canvas>
+        
+        <div id="controls" class="controls" style="display: none;">
+            <div class="control-section">
+                <h3 id="player1Title">Jugador 1</h3>
+                <p>W - Arriba</p>
+                <p>S - Abajo</p>
+            </div>
+            <div class="control-section">
+                <h3 id="player2Title">Jugador 2</h3>
+                <p id="player2Controls">↑ - Arriba<br>↓ - Abajo</p>
+            </div>
+        </div>
+        
+        <div id="gameInfo" class="game-info" style="display: none;">
+            <button id="startBtn">Iniciar Juego</button>
+            <button id="pauseBtn">Pausar</button>
+            <button id="resetBtn">Reiniciar</button>
+            <button id="backBtn">Cambiar Modo</button>
+            <p id="gameStatus">Presiona "Iniciar Juego" para comenzar</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

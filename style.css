@@ -1,0 +1,438 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.game-header {
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #fff, #00ff88);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.separator {
+    margin: 0 20px;
+    color: white;
+}
+
+.timer {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    opacity: 0.9;
+}
+
+#gameTimer {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.speed-indicator {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #ffa500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    opacity: 0.9;
+}
+
+#speedIndicator {
+    background: rgba(255, 165, 0, 0.1);
+    padding: 3px 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+#speedIndicator.speed-boost {
+    background: rgba(255, 69, 0, 0.2);
+    color: #ff4500;
+    border-color: rgba(255, 69, 0, 0.5);
+    animation: speedPulse 0.5s ease-out;
+}
+
+@keyframes speedPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#gameCanvas {
+    border: 3px solid #00ff88;
+    border-radius: 8px;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    margin: 20px 0;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    padding: 0 50px;
+}
+
+.control-section {
+    text-align: center;
+}
+
+.control-section h3 {
+    color: #00ff88;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.control-section p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+    opacity: 0.8;
+}
+
+.game-info {
+    margin-top: 20px;
+}
+
+button {
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    margin: 0 10px;
+    border-radius: 25px;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+    background: linear-gradient(45deg, #00cc6a, #00ff88);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#gameStatus {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: #00ff88;
+    font-weight: bold;
+}
+
+/* Estilos para la selección de modo */
+.mode-selection {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.mode-selection h2 {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.mode-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.mode-btn {
+    background: linear-gradient(145deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.2));
+    border: 2px solid #00ff88;
+    color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: inherit;
+}
+
+.mode-btn:hover {
+    background: linear-gradient(145deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.3));
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+}
+
+.mode-btn:active {
+    transform: translateY(-2px);
+}
+
+.mode-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #00ff88;
+}
+
+.mode-desc {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+#backBtn {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    margin-top: 10px;
+}
+
+#backBtn:hover {
+    background: linear-gradient(45deg, #ee5a52, #ff6b6b);
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.score {
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.mode-selection {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos para el formulario de nombres */
+.player-names-form {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.player-names-form h2 {
+    color: #00ff88;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.names-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.player-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-input label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.player-input input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid #00ff88;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.player-input input:focus {
+    outline: none;
+    border-color: #00cc6a;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.player-input input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    min-width: 150px;
+}
+
+.form-btn.primary {
+    background: linear-gradient(45deg, #00ff88, #00cc6a);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.form-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 136, 0.4);
+    background: linear-gradient(45deg, #00cc6a, #00ff88);
+}
+
+.form-btn.secondary {
+    background: linear-gradient(45deg, #666, #888);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-btn.secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, #888, #666);
+}
+
+.form-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .game-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    #gameCanvas {
+        width: 100%;
+        max-width: 400px;
+        height: 200px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        padding: 0;
+    }
+    
+    .control-section {
+        margin: 10px 0;
+    }
+    
+    .game-header h1 {
+        font-size: 2rem;
+    }
+    
+    .score {
+        font-size: 1.5rem;
+    }
+    
+    .timer {
+        font-size: 1rem;
+    }
+    
+    .speed-indicator {
+        font-size: 0.8rem;
+    }
+    
+    .mode-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .mode-btn {
+        min-width: 200px;
+        padding: 25px 30px;
+    }
+    
+    .mode-selection h2 {
+        font-size: 1.5rem;
+    }
+    
+    .player-names-form h2 {
+        font-size: 1.4rem;
+    }
+    
+    .names-input-container {
+        max-width: 320px;
+        gap: 20px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .form-btn {
+        min-width: 200px;
+    }
+}
